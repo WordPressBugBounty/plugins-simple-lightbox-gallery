@@ -80,12 +80,20 @@ jQuery(function (jQuery) {
 
 jQuery(document).ready(function($){
     jQuery('.my-color-field').wpColorPicker();
-
+    
     /*Copy shortcode Action*/
     jQuery('#slgf_btn_copy').click(function(){  
         var slgf_shortcode_field = jQuery('#slgf_shortcode_field').val();
-        navigator.clipboard.writeText(slgf_shortcode_field);
-        alert('Shotcode Copied!');      
+        var tempInput = document.createElement("input");
+        tempInput.value = slgf_shortcode_field;
+        document.body.appendChild(tempInput);
+        tempInput.select();
+        tempInput.setSelectionRange(0, 99999); // For mobile devices
+        document.execCommand("copy");
+        document.body.removeChild(tempInput);
+        alert('Shortcode Copied!');     
+        // navigator.clipboard.writeText(slgf_shortcode_field);
+        // alert('Shotcode Copied!');      
       
     });
 });

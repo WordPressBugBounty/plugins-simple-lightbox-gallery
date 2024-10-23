@@ -61,16 +61,16 @@ wp_enqueue_script( 'slg_slider_settings_script' );
 $js = " ";
 ob_start(); ?>
 
-    $(document).ready(function () {
+    jQuery(document).ready(function () {
         slgf_icon_settings();
         codemirror();
     });
 
     function slgf_icon_settings() {
-        if ($('#wl-view-lightbox').is(":checked")) {
-            $('.slgf-icon-settings').show();
+        if (jQuery('#wl-view-lightbox').is(":checked")) {
+            jQuery('.slgf-icon-settings').show();
         } else {
-            $('.slgf-icon-settings').hide();
+            jQuery('.slgf-icon-settings').hide();
         }
     }
 

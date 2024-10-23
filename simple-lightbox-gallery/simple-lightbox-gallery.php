@@ -1,7 +1,7 @@
 <?php
 /**
  * Plugin Name:  Lightbox slider - Responsive Lightbox Gallery.
- * Version: 1.10.0
+ * Version: 1.10.1
  * Description:  Lightbox slider plugin is allow users to view larger versions of images, simple slide shows and Gallery view with grid layout.
  * Author: Weblizar
  * Author URI: https://www.weblizar.com
@@ -159,7 +159,7 @@ class SLGF {
 				wp_enqueue_script( 'media-upload' );
 				wp_enqueue_script( 'slgf-media-uploader-js', WEBLIZAR_SLGF_PLUGIN_URL . 'js/slgf-multiple-media-uploader.js', array( 'jquery' ) );
 
-				wp_enqueue_script('slgf-script-handle', WEBLIZAR_SLGF_PLUGIN_URL . 'slgf-multiple-media-uploader.js', array('jquery'), '', true);
+				wp_enqueue_script('slgf-script-handle', WEBLIZAR_SLGF_PLUGIN_URL . 'js/slgf-multiple-media-uploader.js', array('jquery'), '', true);
 				wp_localize_script( 'slgf-script-handle', 'slgf_vars', array(
 					'slgf_nonce' => wp_create_nonce( 'slgf_nonce_action' ),
 				) );

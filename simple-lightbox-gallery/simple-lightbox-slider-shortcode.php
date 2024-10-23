@@ -344,22 +344,32 @@ function slgf_ShortCode_load_function( $Id ) {
     <!-- Swipe Box-->
     <?php
 	wp_register_script( 'slg_slider_shortcode_script', true );
-	wp_enqueue_script( 'slg_slider_shortcode_script' );
+	wp_enqueue_script( 'slg_slider_shortcode_script' ); 		
 	$js = " ";
 	ob_start(); ?>
-		lightbox.option({
-			'resizeDuration': 200,
-			'wrapAround': true,
-		})
 
-		jQuery('.gallery1').imagesLoaded(function () {
-			jQuery('.gallery1').masonry({
-				itemSelector: '.wl-gallery',
-				isAnimated: true,
-				isFitWidth: true
-			});
-		});
-    <?php
+
+		jQuery(document).ready(function ($) {
+        // Check if Lightbox is loaded before using it.
+        if (typeof lightbox !== 'undefined') {
+            lightbox.option({
+                resizeDuration: 200,
+                wrapAround: true,
+            });
+        } else {
+            console.warn('Lightbox is not defined. Make sure the Lightbox library is loaded.');
+        }
+
+        // Initialize Masonry layout for the gallery.
+        $('.gallery1').imagesLoaded(function () {
+            $('.gallery1').masonry({
+                itemSelector: '.wl-gallery',
+                isAnimated: true,
+                isFitWidth: true
+            });
+        });
+    });
+    <?php	
 	$js .= ob_get_clean();
 	wp_add_inline_script( 'slg_slider_shortcode_script', $js );  
 	wp_reset_query(); 
