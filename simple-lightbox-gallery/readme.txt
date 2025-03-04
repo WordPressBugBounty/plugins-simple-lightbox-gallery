@@ -3,8 +3,8 @@ Contributors: weblizar
 Donate link: https://weblizar.com/lightbox-slider-pro/
 Tags: gallery, slider, responsive gallery, lightbox, photo gallery, masonry, gallery builder, image gallery, wordpress gallery plugin
 Requires at least: 7.4
-Tested up to: 6.6.2
-Stable tag: 1.10.1
+Tested up to: 6.7.2
+Stable tag: 1.10.2
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -145,6 +145,10 @@ Please use WordPress [support forum](http://wordpress.org/support/plugin/simple-
 == Changelog ==
 
 For more information, see [Weblizar](https://weblizar.com/).
+
+= 1.10.2 = [04-04-2025]
+* Tested upto Wordpress 6.7.2
+* Tested upto php 8.3.3
 
 = 1.10.1 = [23-10-2024]
 * Tested upto Wordpress 6.6.2
