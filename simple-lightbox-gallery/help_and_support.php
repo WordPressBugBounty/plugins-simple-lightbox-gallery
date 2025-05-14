@@ -55,9 +55,10 @@ if ( ! defined( 'ABSPATH' ) ) {
 </div>
 
 <?php
-if ( isset( $_REQUEST['slgfchangeurl'] ) && isset( $_REQUEST['security'] )) {
+if ( $_SERVER['REQUEST_METHOD'] === 'POST' && isset( $_POST['slgfchangeurl'], $_POST['security'] ) ) {
     if ( ! wp_verify_nonce( $_POST['security'], 'nonce_sslgfchangeurl_option' ) ) {
-        die();}
+        wp_die( __( 'Security check failed', 'simple-lightbox-gallery' ) );
+    }
     $all_posts = wp_count_posts( 'slgf_slider' )->publish;
     $args      = array( 'post_type' => 'slgf_slider', 'posts_per_page' => $all_posts );
     global $rpg_galleries;
@@ -68,7 +69,8 @@ if ( isset( $_REQUEST['slgfchangeurl'] ) && isset( $_REQUEST['security'] )) {
         $SLGF_Id               = get_the_ID();
         $SLGF_AllPhotosDetails = json_decode( get_post_meta( $SLGF_Id, 'slgf_all_photos_details', true ) );
         $TotalImages           = get_post_meta( $SLGF_Id, 'slgf_total_images_count', true );
-        if ( $TotalImages ) {
+        if ( $TotalImages && !empty( $SLGF_AllPhotosDetails ) ) {
+            $ImagesArray = array(); // Initialize as empty array
             foreach ( $SLGF_AllPhotosDetails as $SLGF_SinglePhotoDetails ) {
                 
                 $name    = $SLGF_SinglePhotoDetails->slgf_image_label;
@@ -122,7 +124,6 @@ if ( isset( $_REQUEST['slgfchangeurl'] ) && isset( $_REQUEST['security'] )) {
                 );
             }
             update_post_meta( $SLGF_Id, 'slgf_all_photos_details', serialize( $ImagesArray ) );
-            $ImagesArray = "";
         }
     endwhile;
 }

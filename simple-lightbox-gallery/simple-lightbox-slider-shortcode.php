@@ -317,8 +317,7 @@ function slgf_ShortCode_load_function($Id)
 								<a title="<?php echo esc_attr($name); ?>" data-lightbox='swipebox_<?php echo esc_attr($SLGF_Id); ?>' class="swipebox_<?php echo esc_attr($SLGF_Id); ?>"
 									href="<?php echo esc_url($url); ?>">
 									<div class="b-link-<?php echo esc_attr($SLGF_Hover_Animation); ?> b-animate-go">
-										<img src="<?php echo esc_url($Thummb_Url); ?>" class="gall-img-responsive"
-											alt="<?php if (isset($slide_alt)) {
+										<img src="<?php echo esc_url($Thummb_Url); ?>" class="gall-img-responsive" style="width:100%; height:auto;" alt="<?php if (isset($slide_alt)) {
 														echo esc_attr($slide_alt);
 													} ?>">
 									</div>
