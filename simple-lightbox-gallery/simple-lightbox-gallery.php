@@ -1,7 +1,7 @@
 <?php
 /**
  * Plugin Name:  Lightbox slider - Responsive Lightbox Gallery.
- * Version: 1.10.5
+ * Version: 1.10.6
  * Description:  Lightbox slider plugin is allow users to view larger versions of images, simple slide shows and Gallery view with grid layout.
  * Author: Weblizar
  * Author URI: https://www.weblizar.com
@@ -141,8 +141,9 @@ class SLGF {
 		add_image_size( 'rpg_gallery_thumb', $this->thumbnail_size_w, $this->thumbnail_size_h, true );
 		add_shortcode( 'lightboxslider', array( &$this, 'shortcode' ) );
 
+		add_action( 'init', array( &$this, 'SLGF_CPT' ), 1 );
+
 		if ( is_admin() ) {
-			add_action( 'init', array( &$this, 'SLGF_CPT' ), 1 );
 			add_action( 'add_meta_boxes', array( &$this, 'add_all_slgf_meta_boxes' ) );
 			add_action( 'admin_init', array( &$this, 'add_all_slgf_meta_boxes' ), 1 );
 			add_action( 'save_post', array( &$this, 'slgf_add_image_meta_box_save' ), 9, 1 );

@@ -53,55 +53,61 @@ function slgf_ShortCode_load_function($Id)
 	/**
 	 * Load Lightbox Slider Pro Settings
 	 */
+	// Default Settings
+	$SLGF_Show_Gallery_Title = "yes";
+	$SLGF_Show_Image_Label = "yes";
+	$SLGF_Hover_Animation = "stroke";
+	$lk_show_img_desc = "Yes";
+	$SLGF_Gallery_Layout = "col-md-6";
+	$SLGF_Thumbnail_Layout = "same-size";
+	$SLGF_Hover_Color = "#0AC2D2";
+	$SLGF_Text_BG_Color = "#FFFFFF";
+	$SLGF_Text_Color = "#000000";
+	$SLGF_Hover_Color_Opacity = "yes";
+	$SLGF_Font_Style = "font-name";
+	$SLGF_Box_Shadow = "yes";
+	$SLGF_Custom_CSS = "";
+	$SLGF_open_link = "_blank";
+	$SLGF_label_Color = "#000000";
+	$SLGF_desc_font_Color = "#000000";
+	$SLGF_btn_Color = "#31a3dd";
+	$SLGF_btn_font_Color = "#FFFFFF";
+	$SLGF_button_title = "Zoom";
+	$SLGF_Light_Box = "lightbox3";
+	$SLGF_title_Color = '#2271b1';
+
 	if (!isset($Id['id'])) {
 		$Id['id'] = "";
-		$SLGF_Show_Gallery_Title = "yes";
-		$SLGF_Show_Image_Label = "yes";
-		$SLGF_Hover_Animation = "stroke";
-		$lk_show_img_desc = "Yes";
-		$SLGF_Gallery_Layout = "col-md-6";
-		$SLGF_Thumbnail_Layout = "same-size";
-		$SLGF_Hover_Color = "#0AC2D2";
-		$SLGF_Text_BG_Color = "#FFFFFF";
-		$SLGF_Text_Color = "#000000";
-		$SLGF_Hover_Color_Opacity = "yes";
-		$SLGF_Font_Style = "font-name";
-		$SLGF_Box_Shadow = "yes";
-		$SLGF_Custom_CSS = "";
-		$SLGF_open_link = "_blank";
-		$SLGF_label_Color = "#000000";
-		$SLGF_desc_font_Color = "#000000";
-		$SLGF_btn_Color = "#31a3dd";
-		$SLGF_btn_font_Color = "#FFFFFF";
-		$SLGF_button_title = "Zoom";
-		$SLGF_Light_Box = "lightbox3";
 	} else {
 		$SLGF_Id = $Id['id'];
 		$SLGF_Settings = "SLGF_Gallery_Settings_" . $SLGF_Id;
-		$SLGF_Settings = json_decode(get_post_meta($SLGF_Id, $SLGF_Settings, true));
-
-		if (($SLGF_Settings)) {
-			$SLGF_Show_Gallery_Title = $SLGF_Settings->SLGF_Show_Gallery_Title;
-			$SLGF_Show_Image_Label = $SLGF_Settings->SLGF_Show_Image_Label;
-			$SLGF_Hover_Animation = $SLGF_Settings->SLGF_Hover_Animation;
-			$SLGF_Gallery_Layout = $SLGF_Settings->SLGF_Gallery_Layout;
-			$SLGF_Thumbnail_Layout = $SLGF_Settings->SLGF_Thumbnail_Layout;
-			$lk_show_img_desc = $SLGF_Settings->lk_show_img_desc;
-			$SLGF_Hover_Color = $SLGF_Settings->SLGF_Hover_Color;
-			$SLGF_Text_BG_Color = $SLGF_Settings->SLGF_Text_BG_Color;
-			$SLGF_Text_Color = $SLGF_Settings->SLGF_Text_Color;
-			$SLGF_Hover_Color_Opacity = $SLGF_Settings->SLGF_Hover_Color_Opacity;
-			$SLGF_Font_Style = $SLGF_Settings->SLGF_Font_Style;
-			$SLGF_Box_Shadow = $SLGF_Settings->SLGF_Box_Shadow;
-			$SLGF_Custom_CSS = $SLGF_Settings->SLGF_Custom_CSS;
-			$SLGF_open_link = $SLGF_Settings->SLGF_open_link;
-			$SLGF_label_Color = $SLGF_Settings->SLGF_label_Color;
-			$SLGF_desc_font_Color = $SLGF_Settings->SLGF_desc_font_Color;
-			$SLGF_btn_Color = $SLGF_Settings->SLGF_btn_Color;
-			$SLGF_btn_font_Color = $SLGF_Settings->SLGF_btn_font_Color;
-			$SLGF_button_title = $SLGF_Settings->SLGF_button_title;
-			$SLGF_Light_Box = $SLGF_Settings->SLGF_Light_Box;
-			$SLGF_title_Color = property_exists($SLGF_Settings, "SLGF_title_Color") ? $SLGF_Settings->SLGF_title_Color : '#2271b1';
+		// Check if meta exists before decoding
+		$meta_value = get_post_meta($SLGF_Id, $SLGF_Settings, true);
+		if ($meta_value) {
+			$SLGF_Settings = json_decode($meta_value);
+			if (($SLGF_Settings)) {
+				$SLGF_Show_Gallery_Title = isset($SLGF_Settings->SLGF_Show_Gallery_Title) ? $SLGF_Settings->SLGF_Show_Gallery_Title : $SLGF_Show_Gallery_Title;
+				$SLGF_Show_Image_Label = isset($SLGF_Settings->SLGF_Show_Image_Label) ? $SLGF_Settings->SLGF_Show_Image_Label : $SLGF_Show_Image_Label;
+				$SLGF_Hover_Animation = isset($SLGF_Settings->SLGF_Hover_Animation) ? $SLGF_Settings->SLGF_Hover_Animation : $SLGF_Hover_Animation;
+				$SLGF_Gallery_Layout = isset($SLGF_Settings->SLGF_Gallery_Layout) ? $SLGF_Settings->SLGF_Gallery_Layout : $SLGF_Gallery_Layout;
+				$SLGF_Thumbnail_Layout = isset($SLGF_Settings->SLGF_Thumbnail_Layout) ? $SLGF_Settings->SLGF_Thumbnail_Layout : $SLGF_Thumbnail_Layout;
+				$lk_show_img_desc = isset($SLGF_Settings->lk_show_img_desc) ? $SLGF_Settings->lk_show_img_desc : $lk_show_img_desc;
+				$SLGF_Hover_Color = isset($SLGF_Settings->SLGF_Hover_Color) ? $SLGF_Settings->SLGF_Hover_Color : $SLGF_Hover_Color;
+				$SLGF_Text_BG_Color = isset($SLGF_Settings->SLGF_Text_BG_Color) ? $SLGF_Settings->SLGF_Text_BG_Color : $SLGF_Text_BG_Color;
+				$SLGF_Text_Color = isset($SLGF_Settings->SLGF_Text_Color) ? $SLGF_Settings->SLGF_Text_Color : $SLGF_Text_Color;
+				$SLGF_Hover_Color_Opacity = isset($SLGF_Settings->SLGF_Hover_Color_Opacity) ? $SLGF_Settings->SLGF_Hover_Color_Opacity : $SLGF_Hover_Color_Opacity;
+				$SLGF_Font_Style = isset($SLGF_Settings->SLGF_Font_Style) ? $SLGF_Settings->SLGF_Font_Style : $SLGF_Font_Style;
+				$SLGF_Box_Shadow = isset($SLGF_Settings->SLGF_Box_Shadow) ? $SLGF_Settings->SLGF_Box_Shadow : $SLGF_Box_Shadow;
+				$SLGF_Custom_CSS = isset($SLGF_Settings->SLGF_Custom_CSS) ? $SLGF_Settings->SLGF_Custom_CSS : $SLGF_Custom_CSS;
+				$SLGF_open_link = isset($SLGF_Settings->SLGF_open_link) ? $SLGF_Settings->SLGF_open_link : $SLGF_open_link;
+				$SLGF_label_Color = isset($SLGF_Settings->SLGF_label_Color) ? $SLGF_Settings->SLGF_label_Color : $SLGF_label_Color;
+				$SLGF_desc_font_Color = isset($SLGF_Settings->SLGF_desc_font_Color) ? $SLGF_Settings->SLGF_desc_font_Color : $SLGF_desc_font_Color;
+				$SLGF_btn_Color = isset($SLGF_Settings->SLGF_btn_Color) ? $SLGF_Settings->SLGF_btn_Color : $SLGF_btn_Color;
+				$SLGF_btn_font_Color = isset($SLGF_Settings->SLGF_btn_font_Color) ? $SLGF_Settings->SLGF_btn_font_Color : $SLGF_btn_font_Color;
+				$SLGF_button_title = isset($SLGF_Settings->SLGF_button_title) ? $SLGF_Settings->SLGF_button_title : $SLGF_button_title;
+				$SLGF_Light_Box = isset($SLGF_Settings->SLGF_Light_Box) ? $SLGF_Settings->SLGF_Light_Box : $SLGF_Light_Box;
+				$SLGF_title_Color = isset($SLGF_Settings->SLGF_title_Color) ? $SLGF_Settings->SLGF_title_Color : $SLGF_title_Color;
+			}
 		}
 	}
 
@@ -264,7 +270,7 @@ function slgf_ShortCode_load_function($Id)
 								$slide_alt = wp_cache_get($cache_key);
 
 								if ($slide_alt === false) {
-									$query = $wpdb->prepare("SELECT `post_title` FROM %s WHERE `guid` LIKE %s", $post_table_name, $url);
+									$query = $wpdb->prepare("SELECT `post_title` FROM {$post_table_name} WHERE `guid` LIKE %s", $url);
 									$attachment = $wpdb->get_col($query);
 
 									if (!empty($attachment)) {
