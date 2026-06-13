@@ -3,8 +3,8 @@ Contributors: weblizar
 Donate link: https://weblizar.com/lightbox-slider-pro/
 Tags: Gallery, Image Gallery, Photo Gallery, Lightbox, Responsive Gallery
 Requires at least: 7.4
-Tested up to: 6.9.1
-Stable tag: 1.10.6
+Tested up to: 7.0
+Stable tag: 1.10.7
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -145,6 +145,11 @@ Please use WordPress [support forum](http://wordpress.org/support/plugin/simple-
 == Changelog ==
 
 For more information, see [Weblizar](https://weblizar.com/).
+
+= 1.10.7 = [13-06-2026]
+* Tested upto Wordpress 7.0
+* Tested upto php 8.5.6
+
 = 1.10.6 = [23-02-2026]
 * Tested upto Wordpress 6.9.1
 * Tested upto php 8.5.1

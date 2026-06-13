@@ -1,7 +1,7 @@
 <?php
 /**
  * Plugin Name:  Lightbox slider - Responsive Lightbox Gallery.
- * Version: 1.10.6
+ * Version: 1.10.7
  * Description:  Lightbox slider plugin is allow users to view larger versions of images, simple slide shows and Gallery view with grid layout.
  * Author: Weblizar
  * Author URI: https://www.weblizar.com
@@ -351,11 +351,14 @@ class SLGF {
 			<ul id="slgf_gallery_thumbs" class="clearfix">
 				<?php
 				/* Load saved photos into gallery */
-				$SLGF_AllPhotosDetails = json_decode( get_post_meta( $post->ID, 'slgf_all_photos_details', true ) );
-				$TotalImages           = get_post_meta( $post->ID, 'slgf_total_images_count', true );
+$SLGF_AllPhotosDetails = json_decode( get_post_meta( $post->ID, 'slgf_all_photos_details', true ) );
+
+if ( ! is_array( $SLGF_AllPhotosDetails ) && ! is_object( $SLGF_AllPhotosDetails ) ) {
+	$SLGF_AllPhotosDetails = array();
+}				$TotalImages           = get_post_meta( $post->ID, 'slgf_total_images_count', true );
 				$i                     = 0;
 				
-				if ( $TotalImages ) {
+				if (  ! empty( $TotalImages ) && ! empty( $SLGF_AllPhotosDetails ) ) {
 					foreach ( $SLGF_AllPhotosDetails as $SLGF_SinglePhotoDetails ) {
 						$name          = $SLGF_SinglePhotoDetails->slgf_image_label;
 						$UniqueString  = substr( str_shuffle( 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ' ), 0, 5 );
