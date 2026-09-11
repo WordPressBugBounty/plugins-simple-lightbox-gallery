@@ -1,7 +1,7 @@
 <?php
 /**
  * Plugin Name:  Lightbox slider - Responsive Lightbox Gallery.
- * Version: 1.10.7
+ * Version: 1.10.8
  * Description:  Lightbox slider plugin is allow users to view larger versions of images, simple slide shows and Gallery view with grid layout.
  * Author: Weblizar
  * Author URI: https://www.weblizar.com
